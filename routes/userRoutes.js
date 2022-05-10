@@ -2,7 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const validator = require('../middlewares/validator');
 const { createUser } = require('../schemas/userSchemas');
-const { emailExists } = require('../middlewares/userMid');
+const { emailExists } = require('../middlewares/userMiddlewares');
 
 const router = express.Router();
 
