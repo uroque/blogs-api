@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { findByEmail } = require('../services/loginService');
 
@@ -20,7 +21,7 @@ const Login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid fields' });
     }
 
-    const token = jwt.sign({ id: user.id }, password, jwtConfig);
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, jwtConfig);
 
     return res.status(200).json({ token });
   } catch (e) {

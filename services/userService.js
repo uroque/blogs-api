@@ -5,4 +5,9 @@ const createUserService = async ({ displayName, email, password, image }) => {
   return newUser;
 };
 
-module.exports = { createUserService };
+const findAllService = async () => {
+  const usersList = await User.findAll();
+  return usersList;
+};
+
+module.exports = { createUserService, findAllService };
