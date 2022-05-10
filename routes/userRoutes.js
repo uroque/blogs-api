@@ -11,4 +11,6 @@ router.post('/', validator(createUser), emailExists, userController.create);
 
 router.get('/', authToken, userController.findAll);
 
+router.get('/:id', authToken, userController.findById);
+
 module.exports = router;
