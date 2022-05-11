@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post('/', authToken, validator(createCategory), categoriesController.create);
 
-// router.get('/', authToken, categoriesController.findAll);
+router.get('/', authToken, categoriesController.findAll);
 
 // router.get('/:id', authToken, categoriesController.findById);
 
