@@ -4,7 +4,6 @@ const PostModel = (sequelize, DataTypes) => {
     {
       title: DataTypes.STRING,
       content: DataTypes.STRING,
-      categoryIds: DataTypes.ARRAY(DataTypes.INTEGER),
       published: DataTypes.DATE,
       updated: DataTypes.DATE,
     },

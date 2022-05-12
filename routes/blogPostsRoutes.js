@@ -11,4 +11,6 @@ router.post('/', authToken, validator(create), blogPostsController.create);
 
 router.get('/', authToken, blogPostsController.findAll);
 
+router.get('/:id', authToken, blogPostsController.findById);
+
 module.exports = router;
