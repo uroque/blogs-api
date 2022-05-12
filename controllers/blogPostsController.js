@@ -29,6 +29,15 @@ const create = async (req, res) => {
   }
 };
 
+const findAll = async (req, res) => {
+  const userId = req.auth;
+
+  const posts = await blogPostsService.findAll(userId);
+
+  return res.status(200).json(posts);
+};
+
 module.exports = {
   create,
+  findAll,
 };
