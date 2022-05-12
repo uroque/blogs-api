@@ -11,6 +11,4 @@ router.post('/', authToken, validator(createCategory), categoriesController.crea
 
 router.get('/', authToken, categoriesController.findAll);
 
-// router.get('/:id', authToken, categoriesController.findById);
-
 module.exports = router;
