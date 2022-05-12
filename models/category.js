@@ -5,7 +5,7 @@ const CategoryModel = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
     },
     {
-      underscored: true,
+      underscored: false,
       timestamps: false,
     },
   );
