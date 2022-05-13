@@ -13,4 +13,8 @@ router.get('/', authToken, blogPostsController.findAll);
 
 router.get('/:id', authToken, blogPostsController.findById);
 
+// router.put('/:id', authToken);
+
+router.delete('/:id', authToken, blogPostsController.destroy);
+
 module.exports = router;

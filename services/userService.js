@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, BlogPost } = require('../models');
 
 const create = async ({ displayName, email, password, image }) => {
   const newUser = await User.create({ displayName, email, password, image });
@@ -20,8 +20,13 @@ const findById = async (id) => {
   return foundUser.dataValues;
 };
 
+const destroy = async (userId) => {
+  await User.destroy({ where: { id: userId } });
+};
+
 module.exports = {
   create,
   findAll,
   findById,
+  destroy,
 };

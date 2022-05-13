@@ -59,8 +59,41 @@ const findById = async (req, res) => {
   }
 };
 
+// const update = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const userId = req.auth;
+//     const post = await blogPostsService.update(userId, id, req.body);
+
+//     return res.status(200).json(post);
+//   } catch (e) {
+//     console.log(e.message);
+//     return res.status(500).json({ message: 'Algo deu errado' });
+//   }
+// };
+
+const destroy = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.auth;
+
+    const error = await blogPostsService.destroy(userId, id);
+
+    if (error) {
+      return res.status(error.status).json({ message: error.message });
+    }
+
+    return res.status(204).end();
+  } catch (e) {
+    console.log(e.message);
+    return res.status(500).json({ message: 'Algo deu errado' });
+  }
+};
+
 module.exports = {
   create,
   findAll,
   findById,
+  destroy,
+  // update,
 };

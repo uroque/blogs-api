@@ -38,8 +38,17 @@ const findById = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  const userId = req.auth;
+
+  await UserService.destroy(userId);
+
+  return res.status(204).end();
+};
+
 module.exports = {
   create,
   findAll,
   findById,
+  destroy,
 };
