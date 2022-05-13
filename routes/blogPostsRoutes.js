@@ -2,7 +2,7 @@ const express = require('express');
 
 const blogPostsController = require('../controllers/blogPostsController');
 const validator = require('../middlewares/validator');
-const { create } = require('../schemas/blogPostsSchemas');
+const { create, update } = require('../schemas/blogPostsSchemas');
 const { authToken } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/', authToken, blogPostsController.findAll);
 
 router.get('/:id', authToken, blogPostsController.findById);
 
-// router.put('/:id', authToken);
+router.put('/:id', authToken, validator(update), blogPostsController.update);
 
 router.delete('/:id', authToken, blogPostsController.destroy);
 

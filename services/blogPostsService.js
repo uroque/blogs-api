@@ -35,16 +35,28 @@ const findById = async (id) => {
   return post;
 };
 
-// const update = async (userId, id, body) => {
-//   if (body.categoryIds) {
-//     const error = '400|Caregories cannot be edited';
-//     return error;
-//   }
+const update = async (userId, id, body) => {
+  const post = await BlogPost.findOne({ where: { id } });
 
-//   const { title, content } = body;
+  if (userId !== post.userId) {
+    const error = { status: 401, message: 'Unauthorized user' };
+    return error;
+  }
 
-//   const post = await BlogPost.update({ userId, id });
-// };
+  const { title, content } = body;
+
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  const updatedPost = await BlogPost.findOne({
+    where: { id },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  return updatedPost;
+};
 
 const destroy = async (userId, id) => {
   const post = await BlogPost.findOne({ where: { id } });
@@ -67,5 +79,5 @@ module.exports = {
   findAll,
   findById,
   destroy,
-  // update,
+  update,
 };
